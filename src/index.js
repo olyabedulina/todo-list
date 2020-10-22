@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import domReady from 'document-ready-promise'
 
+import './styles.css'
 import App from './components/App'
 
 const run = () => {

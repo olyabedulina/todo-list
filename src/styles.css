@@ -1,0 +1,16 @@
+table {
+    border: 1px solid;
+    border-collapse: collapse;
+
+    margin: 30px 0;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid;
+}
+
+.todo-completed {
+    text-decoration: line-through;
+    opacity: 0.3;
+}

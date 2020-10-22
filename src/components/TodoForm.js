@@ -9,7 +9,10 @@ const TodoForm = ({ onNewTodo }) => {
 
   function submitTodo() {
     if (value.length > 0) {
-      onNewTodo(value);
+      onNewTodo({
+        value,
+        isCompleted: false
+      });
       setValue('');
     }
   }
