@@ -25,22 +25,22 @@ const TodoSelector = ({ todoState, onChange }) => {
       <input
         type="radio"
         name="show"
-        value="completed"
-        checked={(todoState === 'completed')}
+        value="actual"
+        checked={(todoState === 'actual')}
         onChange={handleRadioChange}
       />
-      Completed
+      Actual
     </label>
     &nbsp;&nbsp;&nbsp;
     <label>
       <input
         type="radio"
         name="show"
-        value="progress"
-        checked={(todoState === 'progress')}
+        value="completed"
+        checked={(todoState === 'completed')}
         onChange={handleRadioChange}
       />
-      In progress
+      Completed
     </label>
   </div>
 

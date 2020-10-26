@@ -15,29 +15,31 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
   }
 
   return (items.length > 0) ? <table>
-    {
-      items.filter(filter).map((todoItem, index) => <tr key={index}>
-        <td>{index + 1}</td>
-        <td><span className={todoItem.isCompleted ? 'todo-completed': ''}>{todoItem.value}</span></td>
-        <td>
-          <input
-            data-checkbox-id={index}
-            type="checkbox"
-            checked={todoItem.isCompleted}
-            onChange={handleCheckboxChange}
-          />
-        </td>
-        <td>
-          <button
-            data-button-id={index}
-            type="button"
-            onClick={handleButtonClick}
-          >
-            Delete
-          </button>
-        </td>
-      </tr>)
-    }
+    <tbody>
+      {
+        items.filter(filter).map((todoItem, index) => <tr key={index}>
+          <td>{index + 1}</td>
+          <td><span className={todoItem.isCompleted ? 'todo-completed': ''}>{todoItem.value}</span></td>
+          <td>
+            <input
+              data-checkbox-id={index}
+              type="checkbox"
+              checked={todoItem.isCompleted}
+              onChange={handleCheckboxChange}
+            />
+          </td>
+          <td>
+            <button
+              data-button-id={index}
+              type="button"
+              onClick={handleButtonClick}
+            >
+              Delete
+            </button>
+          </td>
+        </tr>)
+      }
+    </tbody>
   </table> : 'There are no any todo items yet.'
 }
 
