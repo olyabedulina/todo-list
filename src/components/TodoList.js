@@ -1,7 +1,6 @@
 import React from 'react'
 
-const TodoList = ({ items, onTodoCompleteChange }) => {
-
+const TodoList = ({ items, onTodoCompleteChange, filter }) => {
   function handleCheckboxChange(event) {
     const todoId = event.target.getAttribute('data-id');
     const isCompleted = event.target.checked;
@@ -11,7 +10,7 @@ const TodoList = ({ items, onTodoCompleteChange }) => {
 
   return <table>
     {
-      items.map((todoItem, index) => <tr>
+      items.filter(filter).map((todoItem, index) => <tr key={index}>
         <td>{index + 1}</td>
         <td><span className={todoItem.isCompleted ? 'todo-completed': ''}>{todoItem.value}</span></td>
         <td>
