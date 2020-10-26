@@ -26,6 +26,12 @@ const App = () => {
     )
   }
 
+  function handleTodoDelete(todoId) {
+    setTodoItems(
+      todoItems.filter( (item, index) => (index != todoId))
+    )
+  }
+
   const todoFilter = ({ isCompleted }) => {
     switch (todoState) {
       case 'all':
@@ -49,9 +55,11 @@ const App = () => {
       todoState={todoState}
       onChange={handleTodoStateChange}
     />
+    <br/>
     <TodoList
       items={todoItems}
       onTodoCompleteChange={handleTodoCompleteChange}
+      onTodoDelete={handleTodoDelete}
       filter={todoFilter}
     />
   </div>
