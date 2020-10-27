@@ -62,6 +62,24 @@ const App = () => {
     )
   }
 
+  function handleTodoMoveVeryTop(todoId) {
+    setTodoItems(
+      _sortBy(todoItems, (todoItem) => {
+        const todoIndex = todoItems.indexOf(todoItem)
+        return (todoIndex == todoId) ? -1 : todoIndex;
+      })
+    )
+  }
+
+  function handleTodoMoveVeryBottom(todoId) {
+    setTodoItems(
+      _sortBy(todoItems, (todoItem) => {
+        const todoIndex = todoItems.indexOf(todoItem)
+        return (todoIndex == todoId) ? (todoItems.length + 1) : todoIndex;
+      })
+    )
+  }
+
   const todoFilter = ({ isCompleted }) => {
     switch (todoState) {
       case 'all':
@@ -117,6 +135,8 @@ const App = () => {
       onTodoDelete={handleTodoDelete}
       onTodoMoveUp={handleTodoMoveUp}
       onTodoMoveDown={handleTodoMoveDown}
+      onTodoMoveVeryTop={handleTodoMoveVeryTop}
+      onTodoMoveVeryBottom={handleTodoMoveVeryBottom}
       filter={todoFilter}
     />
   </div>

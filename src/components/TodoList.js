@@ -1,6 +1,7 @@
 import React from 'react'
 
-const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onTodoMoveDown, filter }) => {
+const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onTodoMoveDown,
+                    onTodoMoveVeryTop, onTodoMoveVeryBottom, filter }) => {
 
   function handleCheckboxChange(event) {
     const todoId = event.target.getAttribute('data-todo-id');
@@ -27,6 +28,18 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onT
     onTodoMoveDown(todoId);
   }
 
+  function handleMoveVeryTopButtonClick(event) {
+    const todoId = event.target.getAttribute('data-todo-id');
+
+    onTodoMoveVeryTop(todoId);
+  }
+
+  function handleMoveVeryBottomButtonClick(event) {
+    const todoId = event.target.getAttribute('data-todo-id');
+
+    onTodoMoveVeryBottom(todoId);
+  }
+
   return (items.length > 0) ? <table>
     <tbody>
       {
@@ -48,6 +61,7 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onT
             <button
               data-todo-id={index}
               type="button"
+              disabled={index == 0}
               onClick={handleMoveUpButtonClick}
             >
               &uarr;
@@ -56,11 +70,32 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onT
             <button
               data-todo-id={index}
               type="button"
+              disabled={index == (items.length - 1)}
               onClick={handleMoveDownButtonClick}
             >
               &darr;
             </button>
             &nbsp;&nbsp;&nbsp;
+
+            <button
+              data-todo-id={index}
+              type="button"
+              disabled={index == 0}
+              onClick={handleMoveVeryTopButtonClick}
+            >
+              &#10514;
+            </button>
+            &nbsp;
+            <button
+              data-todo-id={index}
+              type="button"
+              disabled={index == (items.length - 1)}
+              onClick={handleMoveVeryBottomButtonClick}
+            >
+              &#10515;
+            </button>
+            &nbsp;&nbsp;&nbsp;
+
             <button
               data-todo-id={index}
               type="button"
