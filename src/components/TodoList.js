@@ -1,18 +1,30 @@
 import React from 'react'
 
-const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
+const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onTodoMoveDown, filter }) => {
 
   function handleCheckboxChange(event) {
-    const todoId = event.target.getAttribute('data-checkbox-id');
+    const todoId = event.target.getAttribute('data-todo-id');
     const isCompleted = event.target.checked;
 
     onTodoCompleteChange(todoId, isCompleted);
   }
 
-  function handleButtonClick(event) {
-    const todoId = event.target.getAttribute('data-button-id');
+  function handleDeleteButtonClick(event) {
+    const todoId = event.target.getAttribute('data-todo-id');
 
     onTodoDelete(todoId);
+  }
+
+  function handleMoveUpButtonClick(event) {
+    const todoId = event.target.getAttribute('data-todo-id');
+
+    onTodoMoveUp(todoId);
+  }
+
+  function handleMoveDownButtonClick(event) {
+    const todoId = event.target.getAttribute('data-todo-id');
+
+    onTodoMoveDown(todoId);
   }
 
   return (items.length > 0) ? <table>
@@ -26,7 +38,7 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
           </td>
           <td>
             <input
-              data-checkbox-id={index}
+              data-todo-id={index}
               type="checkbox"
               checked={todoItem.isCompleted}
               onChange={handleCheckboxChange}
@@ -34,9 +46,25 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
           </td>
           <td>
             <button
-              data-button-id={index}
+              data-todo-id={index}
               type="button"
-              onClick={handleButtonClick}
+              onClick={handleMoveUpButtonClick}
+            >
+              &uarr;
+            </button>
+            &nbsp;
+            <button
+              data-todo-id={index}
+              type="button"
+              onClick={handleMoveDownButtonClick}
+            >
+              &darr;
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button
+              data-todo-id={index}
+              type="button"
+              onClick={handleDeleteButtonClick}
             >
               Delete
             </button>

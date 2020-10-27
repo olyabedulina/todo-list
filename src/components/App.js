@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import _sortBy from 'lodash/sortBy'
 
 import TodoForm from './TodoForm'
 import TodoList from './TodoList'
@@ -40,6 +41,24 @@ const App = () => {
   function handleTodoDelete(todoId) {
     setTodoItems(
       todoItems.filter( (item, index) => (index != todoId))
+    )
+  }
+
+  function handleTodoMoveUp(todoId) {
+    setTodoItems(
+      _sortBy(todoItems, (todoItem) => {
+        const todoIndex = todoItems.indexOf(todoItem)
+        return (todoIndex == todoId) ? (todoIndex - 2) : todoIndex;
+      })
+    )
+  }
+
+  function handleTodoMoveDown(todoId) {
+    setTodoItems(
+      _sortBy(todoItems, (todoItem) => {
+        const todoIndex = todoItems.indexOf(todoItem)
+        return (todoIndex == todoId) ? (todoIndex + 2) : todoIndex;
+      })
     )
   }
 
@@ -96,6 +115,8 @@ const App = () => {
       items={todoItems}
       onTodoCompleteChange={handleTodoCompleteChange}
       onTodoDelete={handleTodoDelete}
+      onTodoMoveUp={handleTodoMoveUp}
+      onTodoMoveDown={handleTodoMoveDown}
       filter={todoFilter}
     />
   </div>
