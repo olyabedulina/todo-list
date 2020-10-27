@@ -54,6 +54,22 @@ const App = () => {
     }
   }
 
+  const todoItemsStats = todoItems.reduce((acc, { isCompleted }) => {
+    acc.all++
+
+    if (isCompleted) {
+      acc.completed++
+    } else {
+      acc.actual++
+    }
+
+    return acc
+  }, {
+    all: 0,
+    completed: 0,
+    actual: 0
+  })
+
   useEffect(() => {
     setTodoItems(loadTodoItems())
 
@@ -73,6 +89,7 @@ const App = () => {
     <TodoSelector
       todoState={todoState}
       onChange={handleTodoStateChange}
+      stats={todoItemsStats}
     />
     <br/>
     <TodoList

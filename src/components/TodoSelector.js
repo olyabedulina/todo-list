@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TodoSelector = ({ todoState, onChange }) => {
+const TodoSelector = ({ todoState, onChange, stats }) => {
 
   function handleRadioChange(event) {
     const radioValue = event.target.value;
@@ -18,7 +18,7 @@ const TodoSelector = ({ todoState, onChange }) => {
         checked={(todoState === 'all')}
         onChange={handleRadioChange}
       />
-      All
+      All ({stats.all})
     </label>
     &nbsp;&nbsp;&nbsp;
     <label>
@@ -29,7 +29,7 @@ const TodoSelector = ({ todoState, onChange }) => {
         checked={(todoState === 'actual')}
         onChange={handleRadioChange}
       />
-      Actual
+      Actual ({stats.actual})
     </label>
     &nbsp;&nbsp;&nbsp;
     <label>
@@ -40,7 +40,7 @@ const TodoSelector = ({ todoState, onChange }) => {
         checked={(todoState === 'completed')}
         onChange={handleRadioChange}
       />
-      Completed
+      Completed ({stats.completed})
     </label>
   </div>
 

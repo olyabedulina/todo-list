@@ -11,7 +11,8 @@ const TodoForm = ({ onNewTodo }) => {
     if (value.length > 0) {
       onNewTodo({
         value,
-        isCompleted: false
+        isCompleted: false,
+        creationDate: (new Date()).toISOString()
       });
       setValue('');
     }

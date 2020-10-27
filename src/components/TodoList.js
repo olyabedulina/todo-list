@@ -1,6 +1,7 @@
 import React from 'react'
 
 const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
+
   function handleCheckboxChange(event) {
     const todoId = event.target.getAttribute('data-checkbox-id');
     const isCompleted = event.target.checked;
@@ -20,6 +21,9 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, filter }) => {
         items.filter(filter).map((todoItem, index) => <tr key={index}>
           <td>{index + 1}</td>
           <td><span className={todoItem.isCompleted ? 'todo-completed': ''}>{todoItem.value}</span></td>
+          <td>
+            {(new Date(todoItem.creationDate)).toLocaleString()}
+          </td>
           <td>
             <input
               data-checkbox-id={index}
