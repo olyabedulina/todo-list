@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onTodoMoveDown,
-                    onTodoMoveVeryTop, onTodoMoveVeryBottom, filter }) => {
-
+const TodoList = ({
+  items,
+  onTodoCompleteChange,
+  onTodoDelete,
+  onTodoMoveUp,
+  onTodoMoveDown,
+  onTodoMoveVeryTop,
+  onTodoMoveVeryBottom,
+  filter,
+  enableSorting
+}) => {
   function handleCheckboxChange(event) {
     const todoId = event.target.getAttribute('data-todo-id');
     const isCompleted = event.target.checked;
@@ -58,44 +66,47 @@ const TodoList = ({ items, onTodoCompleteChange, onTodoDelete, onTodoMoveUp, onT
             />
           </td>
           <td>
-            <button
-              data-todo-id={index}
-              type="button"
-              disabled={index == 0}
-              onClick={handleMoveUpButtonClick}
-            >
-              &uarr;
-            </button>
-            &nbsp;
-            <button
-              data-todo-id={index}
-              type="button"
-              disabled={index == (items.length - 1)}
-              onClick={handleMoveDownButtonClick}
-            >
-              &darr;
-            </button>
-            &nbsp;&nbsp;&nbsp;
+            {
+              (enableSorting) ? <Fragment>
+                <button
+                  data-todo-id={index}
+                  type="button"
+                  disabled={index == 0}
+                  onClick={handleMoveUpButtonClick}
+                >
+                  &uarr;
+                </button>
+                &nbsp;
+                <button
+                  data-todo-id={index}
+                  type="button"
+                  disabled={index == (items.length - 1)}
+                  onClick={handleMoveDownButtonClick}
+                >
+                  &darr;
+                </button>
+                &nbsp;&nbsp;&nbsp;
 
-            <button
-              data-todo-id={index}
-              type="button"
-              disabled={index == 0}
-              onClick={handleMoveVeryTopButtonClick}
-            >
-              &#10514;
-            </button>
-            &nbsp;
-            <button
-              data-todo-id={index}
-              type="button"
-              disabled={index == (items.length - 1)}
-              onClick={handleMoveVeryBottomButtonClick}
-            >
-              &#10515;
-            </button>
-            &nbsp;&nbsp;&nbsp;
-
+                <button
+                  data-todo-id={index}
+                  type="button"
+                  disabled={index == 0}
+                  onClick={handleMoveVeryTopButtonClick}
+                >
+                  &#10514;
+                </button>
+                &nbsp;
+                <button
+                  data-todo-id={index}
+                  type="button"
+                  disabled={index == (items.length - 1)}
+                  onClick={handleMoveVeryBottomButtonClick}
+                >
+                  &#10515;
+                </button>
+                &nbsp;&nbsp;&nbsp;
+              </Fragment> : null
+            }
             <button
               data-todo-id={index}
               type="button"

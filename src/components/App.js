@@ -138,6 +138,7 @@ const App = () => {
       onTodoMoveVeryTop={handleTodoMoveVeryTop}
       onTodoMoveVeryBottom={handleTodoMoveVeryBottom}
       filter={todoFilter}
+      enableSorting={(todoState === 'all')}
     />
   </div>
 }
