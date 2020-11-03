@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 
+import CM from './styles.pcss'
+
 const TodoList = ({
   items,
   onTodoCompleteChange,
@@ -111,6 +113,7 @@ const TodoList = ({
               data-todo-id={index}
               type="button"
               onClick={handleDeleteButtonClick}
+              className={CM.button}
             >
               Delete
             </button>

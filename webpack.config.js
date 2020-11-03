@@ -46,8 +46,9 @@ module.exports = (env = {}) => ({
           {
             loader: 'css-loader',
             options: {
-              modules: true,
-              localIdentName: '[path][name]___[local]___[hash:base64:5]'
+              modules: {
+                localIdentName: '[path][name]___[local]___[hash:base64:5]'
+              },
             }
           },
           'postcss-loader'

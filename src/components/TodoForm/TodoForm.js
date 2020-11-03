@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import CM from './styles.pcss'
+
 const TodoForm = ({ onNewTodo }) => {
   const [value, setValue] = useState('')
 
@@ -37,7 +39,7 @@ const TodoForm = ({ onNewTodo }) => {
       onKeyDown={handleKeyDown}
     />
     &nbsp;&nbsp;
-    <button type="button" onClick={handleClick}>Add</button>
+    <button className={CM.button} type="button" onClick={handleClick}>Add</button>
   </div>
 }
 
