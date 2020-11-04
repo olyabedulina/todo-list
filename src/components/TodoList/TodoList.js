@@ -50,10 +50,12 @@ const TodoList = ({
     onTodoMoveVeryBottom(todoId);
   }
 
-  return (items.length > 0) ? <table>
+  const filteredItems = items.filter(filter);
+
+  return (filteredItems.length > 0) ? <table>
     <tbody>
       {
-        items.filter(filter).map((todoItem, index) => <tr key={index}>
+        filteredItems.map((todoItem, index) => <tr key={index}>
           <td>{index + 1}</td>
           <td><span className={todoItem.isCompleted ? 'todo-completed': ''}>{todoItem.value}</span></td>
           <td>
@@ -121,7 +123,7 @@ const TodoList = ({
         </tr>)
       }
     </tbody>
-  </table> : 'There are no any todo items yet.'
+  </table> : 'There are no items.'
 }
 
 export default TodoList
