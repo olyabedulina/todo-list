@@ -23,7 +23,9 @@ const TodoList = ({
   function handleDeleteButtonClick(event) {
     const todoId = event.target.getAttribute('data-todo-id');
 
-    onTodoDelete(todoId);
+    if (window.confirm("Do you really want to delete Todo item?")) {
+      onTodoDelete(todoId);
+    }
   }
 
   function handleMoveUpButtonClick(event) {
