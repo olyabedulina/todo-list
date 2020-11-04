@@ -26,8 +26,8 @@ const App = () => {
 
   function handleTodoCompleteChange(todoId, isCompleted) {
     setTodoItems(
-      todoItems.map(function(item, index) {
-        if (index == todoId) {
+      todoItems.map(function(item) {
+        if (item.id === todoId) {
           return {
             ...item,
             isCompleted
@@ -40,42 +40,50 @@ const App = () => {
 
   function handleTodoDelete(todoId) {
     setTodoItems(
-      todoItems.filter( (item, index) => (index != todoId))
+      todoItems.filter((item) => (item.id !== todoId))
     )
   }
 
-  function handleTodoMoveUp(todoId) {
+  function handleTodoMoveUp(targetTodoId) {
+    const targetTodoIdIndex = todoItems.findIndex(({ id }) => (id === targetTodoId))
+
     setTodoItems(
-      _sortBy(todoItems, (todoItem) => {
-        const todoIndex = todoItems.indexOf(todoItem)
-        return (todoIndex == todoId) ? (todoIndex - 2) : todoIndex;
+      _sortBy(todoItems, (iterableTodoItem) => {
+        const iterableTodoItemIndex = todoItems.indexOf(iterableTodoItem)
+        return (iterableTodoItemIndex === targetTodoIdIndex) ? (iterableTodoItemIndex - 2) : iterableTodoItemIndex;
       })
     )
   }
 
-  function handleTodoMoveDown(todoId) {
+  function handleTodoMoveDown(targetTodoId) {
+    const targetTodoIdIndex = todoItems.findIndex(({ id }) => (id === targetTodoId))
+
     setTodoItems(
-      _sortBy(todoItems, (todoItem) => {
-        const todoIndex = todoItems.indexOf(todoItem)
-        return (todoIndex == todoId) ? (todoIndex + 2) : todoIndex;
+      _sortBy(todoItems, (iterableTodoItem) => {
+        const iterableTodoItemIndex = todoItems.indexOf(iterableTodoItem)
+        return (iterableTodoItemIndex === targetTodoIdIndex) ? (iterableTodoItemIndex + 2) : iterableTodoItemIndex;
       })
     )
   }
 
-  function handleTodoMoveVeryTop(todoId) {
+  function handleTodoMoveVeryTop(targetTodoId) {
+    const targetTodoIdIndex = todoItems.findIndex(({ id }) => (id === targetTodoId))
+
     setTodoItems(
-      _sortBy(todoItems, (todoItem) => {
-        const todoIndex = todoItems.indexOf(todoItem)
-        return (todoIndex == todoId) ? -1 : todoIndex;
+      _sortBy(todoItems, (iterableTodoItem) => {
+        const iterableTodoItemIndex = todoItems.indexOf(iterableTodoItem)
+        return (iterableTodoItemIndex === targetTodoIdIndex) ? -1 : iterableTodoItemIndex;
       })
     )
   }
 
-  function handleTodoMoveVeryBottom(todoId) {
+  function handleTodoMoveVeryBottom(targetTodoId) {
+    const targetTodoIdIndex = todoItems.findIndex(({ id }) => (id === targetTodoId))
+
     setTodoItems(
-      _sortBy(todoItems, (todoItem) => {
-        const todoIndex = todoItems.indexOf(todoItem)
-        return (todoIndex == todoId) ? (todoItems.length + 1) : todoIndex;
+      _sortBy(todoItems, (iterableTodoItem) => {
+        const iterableTodoItemIndex = todoItems.indexOf(iterableTodoItem)
+        return (iterableTodoItemIndex === targetTodoIdIndex) ? (todoItems.length + 1) : iterableTodoItemIndex;
       })
     )
   }

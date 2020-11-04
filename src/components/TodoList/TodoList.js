@@ -61,7 +61,7 @@ const TodoList = ({
           </td>
           <td>
             <input
-              data-todo-id={index}
+              data-todo-id={todoItem.id}
               type="checkbox"
               checked={todoItem.isCompleted}
               onChange={handleCheckboxChange}
@@ -71,7 +71,7 @@ const TodoList = ({
             {
               (enableSorting) ? <Fragment>
                 <button
-                  data-todo-id={index}
+                  data-todo-id={todoItem.id}
                   type="button"
                   disabled={index == 0}
                   onClick={handleMoveUpButtonClick}
@@ -80,7 +80,7 @@ const TodoList = ({
                 </button>
                 &nbsp;
                 <button
-                  data-todo-id={index}
+                  data-todo-id={todoItem.id}
                   type="button"
                   disabled={index == (items.length - 1)}
                   onClick={handleMoveDownButtonClick}
@@ -90,7 +90,7 @@ const TodoList = ({
                 &nbsp;&nbsp;&nbsp;
 
                 <button
-                  data-todo-id={index}
+                  data-todo-id={todoItem.id}
                   type="button"
                   disabled={index == 0}
                   onClick={handleMoveVeryTopButtonClick}
@@ -99,7 +99,7 @@ const TodoList = ({
                 </button>
                 &nbsp;
                 <button
-                  data-todo-id={index}
+                  data-todo-id={todoItem.id}
                   type="button"
                   disabled={index == (items.length - 1)}
                   onClick={handleMoveVeryBottomButtonClick}
@@ -110,7 +110,7 @@ const TodoList = ({
               </Fragment> : null
             }
             <button
-              data-todo-id={index}
+              data-todo-id={todoItem.id}
               type="button"
               onClick={handleDeleteButtonClick}
               className={CM.button}

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { nanoid } from 'nanoid'
 
 import CM from './styles.pcss'
 
@@ -12,6 +13,7 @@ const TodoForm = ({ onNewTodo }) => {
   function submitTodo() {
     if (value.length > 0) {
       onNewTodo({
+        id: nanoid(),
         value,
         isCompleted: false,
         creationDate: (new Date()).toISOString()
