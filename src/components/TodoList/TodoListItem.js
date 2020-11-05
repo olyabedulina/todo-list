@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useRef, useEffect } from 'react'
 
 import CM from './styles.pcss'
 
@@ -13,8 +13,12 @@ const TodoListItem = ({
     onTodoMoveUp,
     onTodoMoveDown,
     onTodoMoveVeryTop,
-    onTodoMoveVeryBottom
+    onTodoMoveVeryBottom,
+    onTodoTextChange
 }) => {
+  const inputRef = useRef()
+  const [editMode, setEditMode] = useState(false);
+  const [editableValue, setEditableValue] = useState(data.value)
 
   function handleCheckboxChange(event) {
     const isCompleted = event.target.checked;
@@ -44,9 +48,55 @@ const TodoListItem = ({
     onTodoMoveVeryBottom(data.id);
   }
 
+  function handleInputChange(event) {
+    setEditableValue(event.target.value)
+  }
+
+  function handleInputKeyDown(event) {
+    if (event.key === 'Enter') {
+      setEditMode(false);
+      submitTodoItem(event);
+    }
+  }
+
+  function handleInputBlur(event) {
+    setEditMode(false);
+    submitTodoItem(event);
+  }
+
+  function handleTodoTextDblClick(event) {
+    setEditMode(true);
+  }
+
+  function submitTodoItem(event) {
+    onTodoTextChange(data.id, event.target.value);
+  }
+
+  useEffect(() => {
+    if (editMode) {
+      inputRef.current.focus()
+    }
+  }, [editMode])
+
   return <tr key={index}>
     <td>{index + 1}</td>
-    <td><span className={data.isCompleted ? 'todo-completed': ''}>{data.value}</span></td>
+    <td>
+      {
+        (editMode) ? <input
+            ref={inputRef}
+            type="text"
+            value={editableValue}
+            onChange={handleInputChange}
+            onKeyDown={handleInputKeyDown}
+            onBlur={handleInputBlur}
+          />
+          : <span
+              className={data.isCompleted ? 'todo-completed': ''}
+              onDoubleClick={handleTodoTextDblClick}>
+              {editableValue}
+            </span>
+      }
+    </td>
     <td>
       {(new Date(data.creationDate)).toLocaleString()}
     </td>

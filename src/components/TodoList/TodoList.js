@@ -10,6 +10,7 @@ const TodoList = ({
   onTodoMoveDown,
   onTodoMoveVeryTop,
   onTodoMoveVeryBottom,
+  onTodoTextChange,
   filter,
   enableSorting
 }) => {
@@ -32,6 +33,7 @@ const TodoList = ({
           onTodoMoveDown={onTodoMoveDown}
           onTodoMoveVeryTop={onTodoMoveVeryTop}
           onTodoMoveVeryBottom={onTodoMoveVeryBottom}
+          onTodoTextChange={onTodoTextChange}
           />
         )
       }

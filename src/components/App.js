@@ -38,6 +38,20 @@ const App = () => {
     )
   }
 
+  function handleTodoTextChange(todoId, value) {
+    setTodoItems(
+      todoItems.map(function(item) {
+        if (item.id === todoId) {
+          return {
+            ...item,
+            value
+          }
+        }
+        return item;
+      })
+    )
+  }
+
   function handleTodoDelete(todoId) {
     setTodoItems(
       todoItems.filter((item) => (item.id !== todoId))
@@ -145,6 +159,7 @@ const App = () => {
       onTodoMoveDown={handleTodoMoveDown}
       onTodoMoveVeryTop={handleTodoMoveVeryTop}
       onTodoMoveVeryBottom={handleTodoMoveVeryBottom}
+      onTodoTextChange={handleTodoTextChange}
       filter={todoFilter}
       enableSorting={(todoState === 'all')}
     />
