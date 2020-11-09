@@ -27,7 +27,9 @@ module.exports = (env = {}) => ({
                 ],
                 '@babel/preset-react'
               ],
-              plugins: (plugins => env.dev ? plugins.concat('react-refresh/babel') : plugins)([])
+              plugins: (plugins => env.dev ? plugins.concat('react-refresh/babel') : plugins)([
+                '@babel/plugin-proposal-class-properties'
+              ])
             }
           }
         ],

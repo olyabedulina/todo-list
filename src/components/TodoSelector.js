@@ -1,49 +1,52 @@
 import React from 'react';
 
-const TodoSelector = ({ todoState, onChange, stats }) => {
+class TodoSelector extends React.Component {
 
-  function handleRadioChange(event) {
-    const radioValue = event.target.value;
+  handleRadioChange = (event) => {
+     const radioValue = event.target.value;
 
-    onChange(radioValue);
+     this.props.onChange(radioValue);
+   }
+
+  render () {
+    const { todoState, stats } = this.props;
+
+    return <div>
+      Show:&nbsp;&nbsp;
+      <label>
+        <input
+          type="radio"
+          name="show"
+          value="all"
+          checked={(todoState === 'all')}
+          onChange={this.handleRadioChange}
+        />
+        All ({stats.all})
+      </label>
+      &nbsp;&nbsp;&nbsp;
+      <label>
+        <input
+          type="radio"
+          name="show"
+          value="actual"
+          checked={(todoState === 'actual')}
+          onChange={this.handleRadioChange}
+        />
+        Actual ({stats.actual})
+      </label>
+      &nbsp;&nbsp;&nbsp;
+      <label>
+        <input
+          type="radio"
+          name="show"
+          value="completed"
+          checked={(todoState === 'completed')}
+          onChange={this.handleRadioChange}
+        />
+        Completed ({stats.completed})
+      </label>
+    </div>
   }
-
-  return <div>
-    Show:&nbsp;&nbsp;
-    <label>
-      <input
-        type="radio"
-        name="show"
-        value="all"
-        checked={(todoState === 'all')}
-        onChange={handleRadioChange}
-      />
-      All ({stats.all})
-    </label>
-    &nbsp;&nbsp;&nbsp;
-    <label>
-      <input
-        type="radio"
-        name="show"
-        value="actual"
-        checked={(todoState === 'actual')}
-        onChange={handleRadioChange}
-      />
-      Actual ({stats.actual})
-    </label>
-    &nbsp;&nbsp;&nbsp;
-    <label>
-      <input
-        type="radio"
-        name="show"
-        value="completed"
-        checked={(todoState === 'completed')}
-        onChange={handleRadioChange}
-      />
-      Completed ({stats.completed})
-    </label>
-  </div>
-
 }
 
 export default TodoSelector;
