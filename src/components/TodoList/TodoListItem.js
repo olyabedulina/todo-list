@@ -1,4 +1,5 @@
 import React, { Fragment, useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 import CM from './styles.pcss'
 
@@ -90,11 +91,13 @@ const TodoListItem = ({
             onKeyDown={handleInputKeyDown}
             onBlur={handleInputBlur}
           />
-          : <span
+          : <Link to={`/todo/${data.id}`}>
+            <span
               className={data.isCompleted ? 'todo-completed': ''}
               onDoubleClick={handleTodoTextDblClick}>
-              {editableValue}
+                {editableValue}
             </span>
+          </Link>
       }
     </td>
     <td>
